@@ -1,0 +1,13 @@
+{
+    "files": ["./index.ts"],
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "declaration": true,
+      "strict": true,
+      "target": "ES2021",
+      "outDir": "./dist",
+      "module": "commonjs",
+      "esModuleInterop": true
+    }
+  }
