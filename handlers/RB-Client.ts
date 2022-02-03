@@ -15,13 +15,9 @@ interface ReviewBotsOptions {
  * INITIALIZE THE CLIENT
  */
 export class RBClient extends EventEmitter {
-
     private options: ReviewBotsOptions;
-
     constructor(auth: string, options: ReviewBotsOptions = {}) {
-
         super();
-
         this.options = {
             auth: auth,
             ...options
@@ -32,36 +28,24 @@ export class RBClient extends EventEmitter {
      * THE BASE REQUEST
      * HANDLES RESPONSE STATUSES
      */
-    private async _request(method: string, path: string, body?: Record<string, any>): Promise<any> {
-
+     private async _request(method: string, path: string, body?: Record<string, any>): Promise<any> {
         const headers = new Headers();
-
         if (this.options.auth) headers.set('authorization', this.options.auth);
         if (method !== "GET") headers.set('Content-Type', 'application/json');
-
-        let url = `https://api.reviewbots.xyz/${path}`;
-
+        let url = `https://api.reviewbots.xyz/${path}`
         if (body && method === "GET") url += `${new URLSearchParams(body)}`;
-
         const response = await fetch(url, {
             method, headers, body: body && method !== "GET" ? JSON.stringify(body) : undefined,
         });
-
         let responseBody;
-
-        if (response.headers.get('Content-Type')?.startsWith('application/json')) {
-            
+        if (response.headers.get('Content-Type')?.startsWith("application/json")) {
             responseBody = await response.json();
-
         } else {
-
-            responseBody = await response.text();
+            responseBody = await response.text()
         }
-
         if (!response.ok) {
             throw new ReviewBotsError(response.status, response.statusText, response);
         }
-
         return responseBody;
     }
 

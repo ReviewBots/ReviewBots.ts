@@ -1,5 +1,5 @@
 # ReviewBots.ts
-This is our Official NPM Module used for Posting and Getting Stats.
+This is our Official NPM Module used for interacting with the Review Bots API.
 
 --- 
 

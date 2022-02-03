@@ -1,4 +1,4 @@
-import { response } from 'node-fetch'
+import { Response } from 'node-fetch'
 
 const tips = {
     200: 'REQUEST_SUCCESS | More Info: https://docs.reviewbots.xyz',
@@ -17,7 +17,7 @@ export default class ReviewBotsError extends Error {
         if (status in tips) {
             super(`${status} ${message} (${tips[status as keyof typeof tips]})`);
         } else {
-            super(`${status} ${message}`)
+            super(`${status} ${message}`);
         }
         this.response = response;
     }
